@@ -1,0 +1,44 @@
+<ion-content padding>
+
+  <ion-item class="top" color="dark">
+    <ion-label>Duración del descanso</ion-label>
+    <ion-datetime display-format="mm:ss" placeholder="Duración mm:ss" [(ngModel)]="fullTime"></ion-datetime>
+  </ion-item>
+  
+  <div class="circle-progress-container">
+    <circle-progress (click)="startTime()"
+    [percent]="percent"
+    [maxPercent]="100"
+    [radius]="radius"
+    [showTitle]="false"
+    [showSubtitle]="true"
+    [subtitle]="remainingTime"
+    [subtitleFontSize]="40"
+    [showUnits]="false"
+    [outerStrokeWidth]="16"
+    [outerStrokeColor]="'#45a29e'"
+    [showZeroOuterStroke]="false"
+    [backgroundStroke]="'#1f2833'"
+    [backgroundStrokeWidth]="3"
+    [outerStrokeGradient]="true"
+    [outerStrokeGradientStopColor]="'#66fcf1'"
+    [showInnerStroke]="false"
+  ></circle-progress>
+  </div>
+
+  <p>{{ elapsed.h }}:{{ elapsed.m }}:{{ elapsed.s }}</p>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ng-container *ngIf="timer == false; else running">
+      <ion-fab-button (click)="startTime()">
+        <ion-icon name="play"></ion-icon>
+      </ion-fab-button>
+    </ng-container>
+    <ng-template #running>
+      <ion-fab-button (click)="stopTime()">
+        <ion-icon name="square"></ion-icon>
+      </ion-fab-button>
+    </ng-template>
+  </ion-fab>
+  
+</ion-content>
